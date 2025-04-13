@@ -8,7 +8,6 @@ name: Docker
 on:
   push:
     tags: [ '*' ]
-  push:
     branches: [ "publish-image" ]
 
 env:
