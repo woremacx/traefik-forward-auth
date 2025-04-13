@@ -103,7 +103,7 @@ func TestServerAuthHandlerInvalid(t *testing.T) {
 	c.Value = fmt.Sprintf("bad|%s|%s", parts[1], parts[2])
 
 	res, _ = doHttpRequest(req, c)
-	assert.Equal(401, res.StatusCode, "invalid cookie should not be authorised")
+	assert.Equal(307, res.StatusCode, "invalid cookie should be redirected")
 
 	// Should validate email
 	req = newDefaultHttpRequest("/foo")
@@ -111,7 +111,7 @@ func TestServerAuthHandlerInvalid(t *testing.T) {
 	config.Domains = []string{"test.com"}
 
 	res, _ = doHttpRequest(req, c)
-	assert.Equal(401, res.StatusCode, "invalid email should not be authorised")
+	assert.Equal(307, res.StatusCode, "invalid email should be redirected")
 }
 
 func TestServerAuthHandlerExpired(t *testing.T) {
