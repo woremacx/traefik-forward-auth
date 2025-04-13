@@ -99,7 +99,8 @@ func (s *Server) AuthHandler(providerName, rule string) http.HandlerFunc {
 				s.authRedirect(logger, w, r, p)
 			} else {
 				logger.WithField("error", err).Warn("Invalid cookie")
-				http.Error(w, "Not authorized", 401)
+				// http.Error(w, "Not authorized", 401)
+				s.authRedirect(logger, w, r, p)
 			}
 			return
 		}
@@ -108,7 +109,8 @@ func (s *Server) AuthHandler(providerName, rule string) http.HandlerFunc {
 		valid := ValidateEmail(email, rule)
 		if !valid {
 			logger.WithField("email", email).Warn("Invalid email")
-			http.Error(w, "Not authorized", 401)
+			// http.Error(w, "Not authorized", 401)
+			s.authRedirect(logger, w, r, p)
 			return
 		}
 
