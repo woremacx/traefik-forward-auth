@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/thomseddon/go-flags"
-	"github.com/thomseddon/traefik-forward-auth/internal/provider"
+	"github.com/woremacx/traefik-forward-auth/internal/provider"
 )
 
 var config *Config
